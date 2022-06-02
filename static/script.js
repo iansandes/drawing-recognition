@@ -4,10 +4,13 @@ window.addEventListener('load', () => {
   const btnSave = document.querySelector('.btn-save');
   const btnPredict = document.querySelector('.btn-predict');
 
-  canvas.height = window.innerHeight * 0.75;
-  canvas.width = window.innerWidth * 0.75;
+  canvas.height = window.innerHeight * 0.5;
+  canvas.width = window.innerWidth * 0.5;
 
   const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'white';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   let paiting = false;
 
   const startPosition = e => {
@@ -34,6 +37,7 @@ window.addEventListener('load', () => {
 
   const clearCanvas = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   };
 
   const download = () => {
