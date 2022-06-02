@@ -1,10 +1,12 @@
+from tkinter import Image
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from io import BytesIO
-from PIL import Image
 import uvicorn
+import numpy as np
+from PIL import Image, ImageOps
 
 from models.cnn import CNN
 
@@ -26,8 +28,25 @@ async def predict(request: Request):
     img_file = form_data["image_draw"]
     bytes = await img_file.read()
     image = Image.open(BytesIO(bytes))
-    cnn = CNN("model.h5", labels=[])
-    return cnn.predict(image)
+    image_gray = ImageOps.grayscale(image)
+    im_np = np.asarray(image_gray)
+    cnn = CNN(
+        "model_cnn.h5",
+        labels=[
+            "bee",
+            "airplane",
+            "guitar",
+            "crab",
+            "truck",
+            "banana",
+            "coffee cup",
+            "rabbit",
+            "hamburger",
+            "umbrella",
+        ],
+    )
+    result = cnn.predict(im_np)
+    return {"response": result}
 
 
 if __name__ == "__main__":
