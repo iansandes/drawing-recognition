@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.canvas {
+  border: 1px solid black;
+}
+
+button {
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.25rem;
+  margin: 0 1rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: all 0.5s ease;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+.btn-save {
+  background: green;
+}
+
+.btn-predict {
+  background: blue;
+}
+
+.btn-clear {
+  background: gray;
+}
