@@ -4,8 +4,32 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.title {
+  margin-bottom: 0.8rem;
+}
+
+.app {
+  width: 300px;
+}
+
 .canvas {
   border: 1px solid black;
+  border-radius: 4px;
+  cursor: crosshair;
+}
+
+.result {
+  text-align: center;
+}
+
+.toolbox {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 1rem;
 }
 
 button {
@@ -17,6 +41,7 @@ button {
   cursor: pointer;
   color: white;
   transition: all 0.5s ease;
+  margin: 0;
 }
 
 button:hover {
