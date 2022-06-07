@@ -3,13 +3,11 @@ window.addEventListener('load', () => {
   const btnClear = document.querySelector('.btn-clear');
   const btnSave = document.querySelector('.btn-save');
   const btnPredict = document.querySelector('.btn-predict');
+  const pResult = document.querySelector('.result');
 
-  canvas.height = 200;
-  canvas.width = 200;
   const ctx = canvas.getContext('2d');
   ctx.fillStyle = 'white';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.imageSmoothingQuality = "low";
 
   let paiting = false;
 
@@ -48,6 +46,14 @@ window.addEventListener('load', () => {
     anchor.click();
   };
 
+  const renderResult = result => {
+    pResult.innerText = ` This is a ${result}`;
+  };
+
+  const loadingState = () => {
+    pResult.innerText = 'loading...';
+  };
+
   const getCanvasBlob = canvas =>
     new Promise(resolve => canvas.toBlob(blob => resolve(blob)));
 
@@ -59,9 +65,14 @@ window.addEventListener('load', () => {
       method: 'POST',
       body: formData,
     };
-    const response = await fetch('/predict', options);
-    const data = await response.text()
-    console.log(data);
+    loadingState();
+    try {
+      const response = await fetch('/predict', options);
+      const resultJson = await response.json();
+      renderResult(resultJson.data);
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   canvas.addEventListener('mousedown', startPosition);
