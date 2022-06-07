@@ -61,4 +61,7 @@ jobs:
           app-name: 'drawingrecog'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_10558097F37E41D6AD08976AF29E373B }}
-          run: uvicorn main:app
+
+      
+      - name: Run app
+        run: uvicorn main:app
