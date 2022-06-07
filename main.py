@@ -1,4 +1,3 @@
-from tkinter import Image
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -46,7 +45,7 @@ async def predict(request: Request):
         ],
     )
     result = cnn.predict(im_np)
-    return {"response": result}
+    return {"data": result}
 
 
 if __name__ == "__main__":
