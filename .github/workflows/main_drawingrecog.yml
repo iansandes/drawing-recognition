@@ -54,14 +54,5 @@ jobs:
           name: python-app
           path: .
           
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
-          app-name: 'drawingrecog'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_10558097F37E41D6AD08976AF29E373B }}
-
-      
       - name: Run app
         run: uvicorn main:app
